@@ -33,8 +33,7 @@ public class HomePageTest extends BaseSetup{
 		homepage = accountlinkpage.doNotLinkAccount();
 	}
 	
-	
-	
+		
 	@Test(priority = 1)
 	public void verifyHomePage()
 	{
@@ -44,7 +43,7 @@ public class HomePageTest extends BaseSetup{
 	
 	
 	@Test(priority = 2)
-	public void searchForAnItem()
+	public void searchForAnItem() throws IOException
 	{
 		homepage.searchAnItem(prop.getProperty("searchItem"));
 	}

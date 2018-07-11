@@ -30,22 +30,24 @@ public class ItemDescriptionPage extends BaseSetup {
 	}
 	
 	
-	public boolean compareValues()
+	public String getItemDescription()
 	{
 		String itemDescription = descText.getAttribute("content-desc");
-		String Price = itemPrice.getAttribute("content-desc");
-		
-		if(itemDescription.equals("") && Price.equals(""))
-		{
-			return true;
-		}else
-			return false;
+		return itemDescription;
+	}
+	
+	
+	public String getItemPrice()
+	{
+		String price = itemPrice.getAttribute("content-desc");
+		return price;
 	}
 
 	
-	public void addToCart()
+	public OrderQuantityPage addToCart() throws IOException
 	{
 		buyItNowButton.click();
+		return new OrderQuantityPage();
 	}
 	
 	

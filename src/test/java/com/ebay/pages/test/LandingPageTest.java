@@ -43,7 +43,7 @@ public class LandingPageTest extends BaseSetup{
 	}
 	
 	
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void clickSignIn()
 	{
 		loginpage = landingpage.clickSignInButton();

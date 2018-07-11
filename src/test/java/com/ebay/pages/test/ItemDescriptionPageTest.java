@@ -2,7 +2,6 @@ package com.ebay.pages.test;
 
 import java.io.IOException;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,16 +27,23 @@ public class ItemDescriptionPageTest extends BaseSetup {
 	public void InitialSetup() throws IOException
 	{
 		homepage = new HomePage();
-		
 		descpage = homepage.searchAnItem(prop.getProperty("searchItem"));
 	}
 	
 	
 	@Test
-	public void matchItemDescription()
+	public void getItemPriceTest()
 	{
-		boolean result = descpage.compareValues();
-		Assert.assertEquals(result, "true");
+		String result = descpage.getItemPrice();
+		System.out.println("searched item price is :: " +result);
+	}
+	
+	
+	@Test
+	public void getItemDescriptionTest()
+	{
+		String result = descpage.getItemDescription();
+		System.out.println("searched item description is :: " +result);
 	}
 	
 }

@@ -2,7 +2,13 @@
 <suite name="Suite">
   <test name="appiumTest">
      <classes>
-      <class name="com.ebay.pages.test.LandingPageTest"/>
+         <class name="com.ebay.pages.test.LandingPageTest"/>
+      <class name="com.ebay.pages.test.LoginPageTest"/>
+      <class name="com.ebay.pages.test.AccountLinkPageTest"/>
+      <class name="com.ebay.pages.test.HomePageTest"/>
+      <class name="com.ebay.pages.test.ItemDescriptionPageTest"/>
+      <class name="com.ebay.pages.test.OrderQuantityPageTest"/>
+      <class name="com.ebay.pages.test.OrderConfirmationPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -14,6 +14,7 @@ import com.ebay.pages.AccountLinkPage;
 import com.ebay.pages.LandingPage;
 import com.ebay.pages.LoginPage;
 import com.ebay.utility.ReadingExcelFileData;
+import com.ebay.utility.TestUtil;
 
 public class LoginPageTest extends BaseSetup {
 
@@ -47,8 +48,9 @@ public class LoginPageTest extends BaseSetup {
 		Assert.assertEquals(value, "true");
 	}
 	
+	
 	//using TestNG DataProvider to get the data fetched from excel sheet
-	@Test(dependsOnMethods = {"verifyLoginPageTest"}, dataProvider="getExcelData")
+	@Test(dataProvider="getTestData")
 	public void loginTest(String username, String password) throws IOException
 	{
 		accountlinkpage = loginpage.LoginIntoAccount(username, password);
@@ -56,24 +58,10 @@ public class LoginPageTest extends BaseSetup {
 	
 	
 	//using dataProvider annotation to get the data from external source
-	@DataProvider()
-	public Iterator<Object[]> getExcelData() throws IOException
+	@DataProvider
+	public Iterator<Object[]> getTestData() throws IOException
 	{
-		//Storing the excel data in an arraylist of Object
-		ArrayList<Object[]> mydata = new ArrayList<Object[]>();
-		
-		//fetching the data from the specified file path
-		ReadingExcelFileData exceldata = new ReadingExcelFileData("F:\\Ebay_Automation\\com.ebay.mobile.app.test\\src\\test\\resources\\com\\ebay\\testdata\\TestData.xlsx");
-		
-		for(int i = 1; i < exceldata.RowCount(0); i++)
-		{
-			String username = exceldata.getdata("Data", i, "Username");
-			String password = exceldata.getdata("Data", i, "Password");
-			
-			Object[] data = {username, password};
-			mydata.add(data);
-		}
-		return mydata.iterator();
-		
-	}
+		ArrayList<Object[]> testdata = TestUtil.getExcelData();
+		return testdata.iterator();
+	}	
 }

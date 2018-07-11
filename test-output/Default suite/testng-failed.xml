@@ -3,12 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ebay.pages.test.LandingPageTest">
+      <class name="com.ebay.pages.test.LoginPageTest">
         <methods>
-          <include name="initialSetup"/>
-          <include name="verifyLandingPage"/>
+          <include name="InitialSetup"/>
+          <include name="loginTest" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.ebay.pages.test.LandingPageTest -->
+      </class> <!-- com.ebay.pages.test.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
