@@ -18,9 +18,6 @@ public class LandingPage extends BaseSetup{
 	@FindBy(id="button_sign_in")
 	WebElement signInButton;	
 	
-		
-	LoginPage loginpage;
-	
 	
 	public LandingPage() throws IOException
 	{
@@ -37,10 +34,9 @@ public class LandingPage extends BaseSetup{
 	}
 	
 	
-	public LoginPage clickSignInButton()
+	public LoginPage clickSignInButton() throws IOException
 	{
 		signInButton.click();
-		return loginpage;
+		return new LoginPage();
 	}
-	
 }

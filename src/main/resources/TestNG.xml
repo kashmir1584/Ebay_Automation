@@ -1,7 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite">
   <test name="appiumTest">
-     <classes>
+      <packages>
+          <package name="com.ebay.pages.test"></package>
+      </packages>
+  <!--    <classes>
          <class name="com.ebay.pages.test.LandingPageTest"/>
       <class name="com.ebay.pages.test.LoginPageTest"/>
       <class name="com.ebay.pages.test.AccountLinkPageTest"/>
@@ -10,5 +13,6 @@
       <class name="com.ebay.pages.test.OrderQuantityPageTest"/>
       <class name="com.ebay.pages.test.OrderConfirmationPageTest"/>
     </classes>
+     -->
   </test> <!-- Test -->
 </suite> <!-- Suite -->

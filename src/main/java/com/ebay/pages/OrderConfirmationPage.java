@@ -17,12 +17,14 @@ public class OrderConfirmationPage extends BaseSetup {
 	WebElement price;
 	
 	ItemDescriptionPage descpage = new ItemDescriptionPage();
-	
+	public String finalPrice;
+	public String finalDescription;
 	
 	public OrderConfirmationPage() throws IOException
 	{
 		PageFactory.initElements(driver, this);
 	}
+	
 	
 	public String getOderFinalPrice()
 	{

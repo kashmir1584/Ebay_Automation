@@ -15,7 +15,6 @@ public class AccountLinkPage extends BaseSetup {
 	@FindBy(id = "com.ebay.mobile:id/button_google_deny")
 	WebElement noThanks;
 	
-	HomePage homepage;
 	
 	public AccountLinkPage() throws IOException
 	{
@@ -30,9 +29,9 @@ public class AccountLinkPage extends BaseSetup {
 	}
 	
 	
-	public HomePage doNotLinkAccount()
+	public HomePage doNotLinkAccount() throws IOException
 	{
 		noThanks.click();
-		return homepage;
+		return new HomePage();
 	}
 }

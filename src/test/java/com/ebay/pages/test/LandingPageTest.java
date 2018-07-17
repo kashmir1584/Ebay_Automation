@@ -1,9 +1,9 @@
 package com.ebay.pages.test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -29,7 +29,6 @@ public class LandingPageTest extends BaseSetup{
 	{
 		//creating objects of landingpage and loginpage
 		landingpage = new LandingPage();
-		loginpage = new LoginPage();
 	}
 	
 	
@@ -37,16 +36,22 @@ public class LandingPageTest extends BaseSetup{
 	@Test(priority = 1)
 	public void verifyLandingPage()
 	{
-		boolean landingpageTitle = landingpage.confirmingLandingPage();
-		System.out.println("landing page title is :: " +landingpageTitle);
-		Assert.assertTrue(landingpageTitle, "true");
+		boolean result = landingpage.confirmingLandingPage();
+		System.out.println("landing page title is :: " +result);
+		Assert.assertTrue(result, "true");
 	}
 	
 	
-	@Test(priority = 1)
-	public void clickSignIn()
+	@Test(priority = 2)
+	public void clickSignIn() throws IOException
 	{
 		loginpage = landingpage.clickSignInButton();
 	}
 	
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.quit();
+	}
 }

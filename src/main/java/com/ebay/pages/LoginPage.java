@@ -1,7 +1,6 @@
 package com.ebay.pages;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,13 +12,13 @@ public class LoginPage extends BaseSetup{
 
 	//Login Page object repository
 	
-	@FindBy(id = "com.ebay.mobile:id/edit_text_username")
+	@FindBy(id = "edit_text_username")
 	WebElement Username;
 	
-	@FindBy(id = "com.ebay.mobile:id/edit_text_password")
+	@FindBy(id = "edit_text_password")
 	WebElement Password;
 	
-	@FindBy(id = "com.ebay.mobile:id/button_sign_in")
+	@FindBy(id = "button_sign_in")
 	WebElement SubmitButton;
 	
 		

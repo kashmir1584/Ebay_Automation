@@ -8,11 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.ebay.core.BaseSetup;
 
-public class ItemDescriptionPage extends BaseSetup {
-	
-	HomePage homepage;
-	ItemDescriptionPage descpage;
-	
+public class ItemDescriptionPage extends BaseSetup {	
 	
 	@FindBy(name = "Buy It Now")
 	WebElement buyItNowButton;
@@ -44,7 +40,7 @@ public class ItemDescriptionPage extends BaseSetup {
 	}
 
 	
-	public OrderQuantityPage addToCart() throws IOException
+	public OrderQuantityPage clickBuyItNow() throws IOException
 	{
 		buyItNowButton.click();
 		return new OrderQuantityPage();

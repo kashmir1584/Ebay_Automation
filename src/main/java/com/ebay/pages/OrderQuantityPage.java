@@ -30,15 +30,16 @@ public class OrderQuantityPage extends BaseSetup{
 		return result;
 	}
 	
-	public OrderConfirmationPage reviewOrder() throws IOException
+	
+	public OrderConfirmationPage clickOnReviewOrder() throws IOException
 	{
 		reviewButton.click();
 		return new OrderConfirmationPage();
 	}
 	
+	
 	public void setOrderQuantity()
 	{
-		//orderTextbox.sendKeys("2");
-		System.out.println("do nothing");
+		orderTextbox.sendKeys(prop.getProperty("orderQuantity"));
 	}
 }

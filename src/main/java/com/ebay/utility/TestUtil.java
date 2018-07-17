@@ -12,9 +12,9 @@ public class TestUtil {
 		ArrayList<Object[]> mydata = new ArrayList<Object[]>();
 		
 		//fetching the data from the specified file path
-		ReadingExcelFileData exceldata = new ReadingExcelFileData("F:\\Ebay_Automation\\com.ebay.mobile.app.test\\src\\test\\resources\\com\\ebay\\testdata\\TestData.xlsx");
+		ReadingExcelFileData exceldata = new ReadingExcelFileData("F:\\Ebay_Automation\\com.ebay.mobile.app.test\\src\\main\\resources\\TestData.xlsx");
 		
-		for(int i = 2; i < exceldata.RowCount(0); i++)
+		for(int i = 2; i <= exceldata.RowCount(0); i++)
 		{
 			String username = exceldata.getdata("Data", i, "Username");
 			String password = exceldata.getdata("Data", i, "Password");
