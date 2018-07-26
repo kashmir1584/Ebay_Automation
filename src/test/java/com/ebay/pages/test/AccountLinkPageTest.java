@@ -3,8 +3,7 @@ package com.ebay.pages.test;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ebay.core.BaseSetup;
@@ -26,9 +25,10 @@ public class AccountLinkPageTest extends BaseSetup{
 	}
 
 	
-	@BeforeMethod
-	public void InitialSetup() throws IOException
+	@BeforeClass
+	public void InitialSetup() throws IOException, InterruptedException
 	{
+		desiredCapabilitiesSetup();
 		landingpage = new LandingPage();
 		loginpage = landingpage.clickSignInButton();
 		accountlinkpage = loginpage.LoginIntoAccount(prop.getProperty("username"), prop.getProperty("password"));
@@ -39,6 +39,7 @@ public class AccountLinkPageTest extends BaseSetup{
 	public void verifyAccountLinkPageTest()
 	{
 		boolean result = accountlinkpage.verifyAccountLinkPage();
+		System.out.println("nothanks button == " +result);
 		Assert.assertTrue(result, "true");
 	}
 	
@@ -47,12 +48,5 @@ public class AccountLinkPageTest extends BaseSetup{
 	public void doNotLinkAccountTest() throws IOException
 	{
 		homepage = accountlinkpage.doNotLinkAccount();
-	}
-	
-	
-	@AfterMethod
-	public void tearDown()
-	{
-		driver.quit();
 	}
 }

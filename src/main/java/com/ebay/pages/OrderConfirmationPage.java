@@ -2,23 +2,18 @@ package com.ebay.pages;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ebay.core.BaseSetup;
 
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+
 public class OrderConfirmationPage extends BaseSetup {
 
-	@FindBy(id = "")
-	WebElement itemdescription;
-	
-	@FindBy(id = "")
-	WebElement price;
-	
 	ItemDescriptionPage descpage = new ItemDescriptionPage();
-	public String finalPrice;
-	public String finalDescription;
 	
 	public OrderConfirmationPage() throws IOException
 	{
@@ -26,29 +21,36 @@ public class OrderConfirmationPage extends BaseSetup {
 	}
 	
 	
-	public String getOderFinalPrice()
+	public boolean compareItemOrderDetails() throws InterruptedException
 	{
-		String finalPrice = price.getAttribute("content-desc");
-		return finalPrice;
-	}
-	
-	
-	public String getOderFinalDescription()
-	{
-		String finalDescription = itemdescription.getAttribute("content-desc");
-		return finalDescription;
-	}
-	
-	
-	public boolean compareItemOrderDetails()
-	{
-		if((descpage.getItemDescription()).equals("finalDescription")
-				&& (descpage.getItemPrice()).equals("finalPrice"))
+		String description = ItemDescriptionPage.itemDescription;
+		String price = ItemDescriptionPage.price;
+		String val = price.replaceAll("\u20B9", "Rs");
+		System.out.println("new price --" +val);
+		System.out.println("item description from description page -- " +description);
+		System.out.println("item price from description page -- "+ price);
+		
+		MobileElement scrollTo = (MobileElement)driver.findElement(MobileBy
+                .AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
+                        + "new UiSelector().text(\""+ description + "\"));"));
+		
+		if(scrollTo.isDisplayed())
 		{
 			return true;
 		}else
 		{
 			return false;
 		}
+	}
+	
+	
+	public static WebElement elementToText(String text) {
+    	WebElement element = null;
+    	try {
+    		 element=driver.findElement(By.xpath("//*[contains(@text,'"+text+"')]"));
+		} catch (Exception e) {
+			
+		}
+		return element;
 	}
 }

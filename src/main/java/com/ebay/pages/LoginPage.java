@@ -12,14 +12,14 @@ public class LoginPage extends BaseSetup{
 
 	//Login Page object repository
 	
-	@FindBy(id = "edit_text_username")
-	WebElement Username;
+	@FindBy(id="com.ebay.mobile:id/edit_text_password")
+	WebElement passWord;
 	
-	@FindBy(id = "edit_text_password")
-	WebElement Password;
+	@FindBy(id="com.ebay.mobile:id/edit_text_username")
+	WebElement userName;
 	
-	@FindBy(id = "button_sign_in")
-	WebElement SubmitButton;
+	@FindBy(id="com.ebay.mobile:id/button_sign_in")
+	WebElement signInButton;
 	
 		
 	public LoginPage() throws IOException
@@ -30,16 +30,18 @@ public class LoginPage extends BaseSetup{
 
 	public boolean verifyLoginPage()
 	{
-		boolean value = SubmitButton.isDisplayed();
+		
+		boolean value = signInButton.isDisplayed();
+		System.out.println("sign in button is displayed or not :: " +value);
 		return value;
 	}
+		
 	
-	
-	public AccountLinkPage LoginIntoAccount(String un, String pwd) throws IOException
+	public AccountLinkPage LoginIntoAccount(String un, String pwd) throws IOException, InterruptedException
 	{
-		Username.sendKeys(un);
-		Password.sendKeys(pwd);
-		SubmitButton.click();
-		return new AccountLinkPage();
+			userName.sendKeys(un);
+			passWord.sendKeys(pwd);
+			signInButton.click();		
+			return new AccountLinkPage();
 	}
 }

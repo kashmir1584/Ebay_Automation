@@ -3,8 +3,8 @@ package com.ebay.pages.test;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ebay.core.BaseSetup;
@@ -15,6 +15,7 @@ import com.ebay.pages.LandingPage;
 import com.ebay.pages.LoginPage;
 import com.ebay.pages.OrderConfirmationPage;
 import com.ebay.pages.OrderQuantityPage;
+import com.ebay.pages.SearchPage;
 
 public class OderConfirmationPageTest extends BaseSetup {
 
@@ -22,6 +23,7 @@ public class OderConfirmationPageTest extends BaseSetup {
 	LoginPage loginpage;
 	AccountLinkPage accountlinkpage;
 	HomePage homepage;
+	SearchPage searchpage;
 	ItemDescriptionPage descpage;
 	OrderQuantityPage quantitypage;
 	OrderConfirmationPage orderConfrmPage;
@@ -32,46 +34,33 @@ public class OderConfirmationPageTest extends BaseSetup {
 	}
 	
 	
-	@BeforeMethod
-	public void InitialSetup() throws IOException
+	@BeforeClass
+	public void InitialSetup() throws IOException, InterruptedException
 	{
+		desiredCapabilitiesSetup();
 		landingpage = new LandingPage();
 		loginpage = landingpage.clickSignInButton();
 		accountlinkpage = loginpage.LoginIntoAccount(prop.getProperty("username"), prop.getProperty("password"));
 		homepage = accountlinkpage.doNotLinkAccount();
-		descpage = homepage.searchAnItem(prop.getProperty("searchItem"));
-		descpage = new ItemDescriptionPage();
+		searchpage = homepage.clickOnSearchBox();
+		descpage = searchpage.searchForAnItem(prop.getProperty("searchItem"));
 		quantitypage = descpage.clickBuyItNow();
 		orderConfrmPage = quantitypage.clickOnReviewOrder();
 	}
 	
 	
-	@Test(priority = 1)
-	public void getItemDescriptionTest()
-	{
-		String itemdesc = orderConfrmPage.getOderFinalDescription();
-		System.out.println("item final description :: " +itemdesc);
-	}
-	
-	
-	@Test(priority = 2)
-	public void getItemPriceTest()
-	{
-		String itemprice = orderConfrmPage.getOderFinalPrice();
-		System.out.println("item final price :: " +itemprice);
-	}
-	
-	@Test(priority = 3)
-	public void compareDetailsTest()
+	@Test
+	public void compareDetailsTest() throws InterruptedException
 	{
 		boolean result = orderConfrmPage.compareItemOrderDetails();
-		Assert.assertEquals(result, "true");
+		System.out.println("is item description and price are matching?" + result);
+		Assert.assertEquals(result, true);
 	}	
 	
 	
-	/*@AfterMethod
+	@AfterClass
 	public void tearDown()
 	{
 		driver.quit();
-	}*/
+	}
 }

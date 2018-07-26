@@ -10,7 +10,7 @@ import com.ebay.core.BaseSetup;
 
 public class ItemDescriptionPage extends BaseSetup {	
 	
-	@FindBy(name = "Buy It Now")
+	@FindBy(id="com.ebay.mobile:id/button_bin")
 	WebElement buyItNowButton;
 	
 	@FindBy(id = "com.ebay.mobile:id/textview_item_name")
@@ -19,6 +19,7 @@ public class ItemDescriptionPage extends BaseSetup {
 	@FindBy(id = "com.ebay.mobile:id/textview_item_price")
 	WebElement itemPrice;
 	
+	public static String itemDescription, price;
 	
 	public ItemDescriptionPage() throws IOException 
 	{
@@ -28,23 +29,25 @@ public class ItemDescriptionPage extends BaseSetup {
 	
 	public String getItemDescription()
 	{
-		String itemDescription = descText.getAttribute("content-desc");
+		itemDescription = descText.getAttribute("text");
 		return itemDescription;
 	}
 	
 	
 	public String getItemPrice()
 	{
-		String price = itemPrice.getAttribute("content-desc");
+		price = itemPrice.getAttribute("text");
 		return price;
 	}
 
 	
 	public OrderQuantityPage clickBuyItNow() throws IOException
 	{
+		String description  = getItemDescription();
+		String value = getItemPrice();
+		System.out.println("item description -- " +description);
+		System.out.println("item price -- "+value);
 		buyItNowButton.click();
 		return new OrderQuantityPage();
-	}
-	
-	
+	}	
 }

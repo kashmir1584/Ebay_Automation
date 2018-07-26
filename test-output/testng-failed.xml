@@ -5,10 +5,9 @@
     <classes>
       <class name="com.ebay.pages.test.OderConfirmationPageTest">
         <methods>
+          <include name="tearDown"/>
           <include name="compareDetailsTest"/>
-          <include name="getItemPriceTest"/>
           <include name="InitialSetup"/>
-          <include name="getItemDescriptionTest"/>
         </methods>
       </class> <!-- com.ebay.pages.test.OderConfirmationPageTest -->
     </classes>

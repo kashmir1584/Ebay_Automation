@@ -10,8 +10,6 @@ import com.ebay.core.BaseSetup;
 
 public class AccountLinkPage extends BaseSetup {
 
-	
-
 	@FindBy(id = "com.ebay.mobile:id/button_google_deny")
 	WebElement noThanks;
 	

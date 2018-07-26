@@ -11,10 +11,10 @@ import com.ebay.core.BaseSetup;
 public class OrderQuantityPage extends BaseSetup{
 
 	
-	@FindBy(id = "")
+	@FindBy(id = "com.ebay.mobile:id/take_action")
 	WebElement reviewButton;
 	
-	@FindBy(id = "")
+	@FindBy(id = "android:id/numberpicker_input")
 	WebElement orderTextbox;
 	
 	
@@ -26,7 +26,7 @@ public class OrderQuantityPage extends BaseSetup{
 	
 	public boolean verifyQuantityPage()
 	{
-		boolean result = reviewButton.isDisplayed();
+		boolean result = orderTextbox.isDisplayed();
 		return result;
 	}
 	
@@ -35,11 +35,5 @@ public class OrderQuantityPage extends BaseSetup{
 	{
 		reviewButton.click();
 		return new OrderConfirmationPage();
-	}
-	
-	
-	public void setOrderQuantity()
-	{
-		orderTextbox.sendKeys(prop.getProperty("orderQuantity"));
 	}
 }

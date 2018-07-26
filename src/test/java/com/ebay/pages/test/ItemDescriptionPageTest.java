@@ -2,8 +2,7 @@ package com.ebay.pages.test;
 
 import java.io.IOException;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ebay.core.BaseSetup;
@@ -13,6 +12,7 @@ import com.ebay.pages.ItemDescriptionPage;
 import com.ebay.pages.LandingPage;
 import com.ebay.pages.LoginPage;
 import com.ebay.pages.OrderQuantityPage;
+import com.ebay.pages.SearchPage;
 
 public class ItemDescriptionPageTest extends BaseSetup {
 
@@ -20,9 +20,9 @@ public class ItemDescriptionPageTest extends BaseSetup {
 	LoginPage loginpage;
 	AccountLinkPage accountlinkpage;
 	HomePage homepage;
+	SearchPage searchpage;
 	ItemDescriptionPage descpage;
 	OrderQuantityPage quantitypage;
-	
 	
 	
 	public ItemDescriptionPageTest() throws IOException
@@ -31,14 +31,16 @@ public class ItemDescriptionPageTest extends BaseSetup {
 	}
 	
 	
-	@BeforeMethod
-	public void InitialSetup() throws IOException
+	@BeforeClass
+	public void InitialSetup() throws IOException, InterruptedException
 	{
+		desiredCapabilitiesSetup();
 		landingpage = new LandingPage();
 		loginpage = landingpage.clickSignInButton();
 		accountlinkpage = loginpage.LoginIntoAccount(prop.getProperty("username"), prop.getProperty("password"));
 		homepage = accountlinkpage.doNotLinkAccount();
-		descpage = homepage.searchAnItem(prop.getProperty("searchItem"));
+		searchpage = homepage.clickOnSearchBox();
+		descpage = searchpage.searchForAnItem(prop.getProperty("searchItem"));
 	}
 	
 	
@@ -63,11 +65,4 @@ public class ItemDescriptionPageTest extends BaseSetup {
 	{
 		quantitypage = descpage.clickBuyItNow();
 	}
-	
-	
-	/*@AfterMethod
-	public void tearDown()
-	{
-		driver.quit();
-	}*/
 }
